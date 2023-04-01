@@ -26,10 +26,4 @@ open class SnippetMeta(
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     var createdAt: String = Instant.now().toString()
-) {
-    companion object {
-        val EMPTY_SNIPPET = SnippetMeta(
-            createdBy = ""
-        )
-    }
-}
+)
