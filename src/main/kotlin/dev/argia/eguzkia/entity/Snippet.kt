@@ -1,6 +1,7 @@
 package dev.argia.eguzkia.entity
 
 import jakarta.persistence.*
+import java.time.Instant
 import java.util.*
 
 @Entity
@@ -11,7 +12,7 @@ class Snippet(
      */
     @Id
     @Column(nullable = false)
-    var slug: String = "",
+    var slug: String = UUID.randomUUID().toString().slice(IntRange(0, 7)),
 
     /**
      * The main content of a snippet.
@@ -30,7 +31,7 @@ class Snippet(
      */
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    var createdAt: Date = Date()
+    var createdAt: String = Instant.now().toString()
 ) {
     companion object {
         val EMPTY_SNIPPET = Snippet(
@@ -38,15 +39,9 @@ class Snippet(
             createdBy = ""
         )
     }
-
-    @PrePersist
-    fun preInsert() {
-        this.slug = UUID.randomUUID().toString().slice(IntRange(0, 7))
-        this.createdAt = Date()
-    }
 }
 
 class SnippetDTO(
     val slug: String,
-    val createdAt: Date
+    val createdAt: String
 )
