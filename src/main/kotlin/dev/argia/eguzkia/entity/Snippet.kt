@@ -18,7 +18,7 @@ class Snippet(
      * The main content of a snippet.
      */
     @Column(nullable = false)
-    var snippet: String,
+    var content: String,
 
     /**
      * The IP address who made a snippet.
@@ -35,7 +35,7 @@ class Snippet(
 ) {
     companion object {
         val EMPTY_SNIPPET = Snippet(
-            snippet = "NO DATA",
+            content = "NO DATA",
             createdBy = ""
         )
     }

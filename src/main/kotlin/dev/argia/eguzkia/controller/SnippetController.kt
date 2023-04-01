@@ -23,7 +23,7 @@ class SnippetController {
     fun createSnippet(@RequestBody snippet: Snippet, request: HttpServletRequest): Snippet {
         return snippetService.create(Snippet(
             createdBy = request.remoteAddr ?: "unknown",
-            snippet = snippet.snippet
+            content = snippet.content
         ))
     }
 
